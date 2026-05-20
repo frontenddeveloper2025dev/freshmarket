@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frutas y Verduras a Domicilio</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+    <script
+      src="https://cdn.tailwindcss.com/3.4.17"
+      type="text/javascript"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body class="h-full">
+    <div id="app-wrapper" class="w-full h-full overflow-auto">
+      <!-- Header Navigation with Logo -->
+      <nav
+        class="w-full fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4"
+        style="
+          background: #fefefe;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <div class="w-full flex items-center justify-between">
+          <div class="flex items-center gap-2 sm:gap-3">
+            <span class="text-3xl sm:text-4xl md:text-5xl">🥬</span>
+            <span
+              class="font-bold text-base sm:text-lg md:text-2xl"
+              style="color: #064e3b"
+              >FreshMarket</span
+            >
+          </div>
+          <button
+            id="menu-toggle"
+            class="md:hidden text-2xl p-2"
+            style="color: #064e3b"
+          >
+            ☰
+          </button>
+          <div
+            id="nav-menu"
+            class="hidden md:flex items-center gap-4 md:gap-8 absolute md:static top-16 md:top-auto left-0 md:left-auto right-0 md:right-auto md:bg-transparent w-full md:w-auto flex-col md:flex-row p-4 md:p-0"
+            style="background: white"
+          >
+            <a
+              href="#benefits"
+              class="text-sm md:text-base transition block md:inline"
+              style="color: #064e3b"
+              >Beneficios</a
+            >
+            <a
+              href="#products"
+              class="text-sm md:text-base transition block md:inline"
+              style="color: #064e3b"
+              >Productos</a
+            >
+            <a
+              href="#about"
+              class="text-sm md:text-base transition block md:inline"
+              style="color: #064e3b"
+              >Nosotros</a
+            >
+            <a
+              href="#contact"
+              class="text-sm md:text-base transition block md:inline"
+              style="color: #064e3b"
+              >Contacto</a
+            >
+          </div>
+        </div>
+      </nav>
+      <!-- Hero Section -->
+      <header
+        class="hero-section w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 pt-24 sm:pt-32 relative overflow-hidden"
+        style="
+          background: linear-gradient(
+              135deg,
+              rgba(16, 185, 129, 0.75) 0%,
+              rgba(5, 150, 105, 0.75) 100%
+            ),
+            url('https://images.unsplash.com/photo-1488459716781-6f3ee8e14209?w=1600&amp;h=900&amp;fit=crop')
+              center/cover no-repeat;
+          background-attachment: fixed;
+        "
+      >
+        <!-- Decorative circles -->
+        <div
+          class="absolute top-8 right-4 sm:top-10 sm:right-10 w-24 sm:w-40 h-24 sm:h-40 bg-white opacity-10 rounded-full blur-3xl z-2"
+        ></div>
+        <div
+          class="absolute bottom-16 sm:bottom-20 left-2 sm:left-5 w-32 sm:w-64 h-32 sm:h-64 bg-white opacity-5 rounded-full blur-3xl z-2"
+        ></div>
+        <div class="w-full max-w-6xl mx-auto text-center relative z-10">
+          <div class="mb-6 sm:mb-8 flex justify-center gap-3 sm:gap-6">
+            <span class="float-animation text-5xl sm:text-7xl">🛒</span>
+            <span
+              class="text-5xl sm:text-7xl"
+              style="
+                animation: float 3s ease-in-out infinite;
+                animation-delay: 0.3s;
+              "
+              >🥕</span
+            >
+            <span
+              class="text-5xl sm:text-7xl"
+              style="
+                animation: float 3s ease-in-out infinite;
+                animation-delay: 0.6s;
+              "
+              >🍎</span
+            >
+          </div>
+          <h1
+            id="main-title"
+            class="hero-title text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-white"
+          >
+            Frescura a tu puerta
+          </h1>
+          <p
+            id="subtitle"
+            class="hero-subtitle text-base sm:text-lg md:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto px-2 leading-relaxed"
+            style="color: #ffffff !important"
+          >
+            Frutas y verduras frescas entregadas en tu hogar. Calidad premium
+            directo del campo a tu mesa.
+          </p>
+          <button
+            id="cta-button"
+            class="cta-button text-base sm:text-lg px-6 sm:px-10 py-2 sm:py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl bg-white text-green-700 hover:bg-gray-100"
+          >
+            Pedir ahora 🛒
+          </button>
+        </div>
+      </header>
+      <!-- Benefits Section -->
+      <section class="benefits-section py-12 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10"
+          >
+            <!-- Benefit 1 -->
+            <div
+              class="benefit-card rounded-3xl p-8 text-center transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-4">🍎</div>
+              <h3
+                id="benefit-1-title"
+                class="benefit-title text-2xl font-bold mb-3"
+              >
+                100% Fresco
+              </h3>
+              <p id="benefit-1-desc" class="benefit-desc text-lg">
+                Productos frescos directo del campo, seleccionados
+                cuidadosamente cada día.
+              </p>
+            </div>
+            <!-- Benefit 2 -->
+            <div
+              class="benefit-card rounded-3xl p-8 text-center transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-4">🚚</div>
+              <h3
+                id="benefit-2-title"
+                class="benefit-title text-2xl font-bold mb-3"
+              >
+                Entrega rápida
+              </h3>
+              <p id="benefit-2-desc" class="benefit-desc text-lg">
+                En tu puerta en 24 horas. Pedidos antes de las 2pm, entrega al
+                día siguiente.
+              </p>
+            </div>
+            <!-- Benefit 3 -->
+            <div
+              class="benefit-card rounded-3xl p-8 text-center transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-4">💰</div>
+              <h3
+                id="benefit-3-title"
+                class="benefit-title text-2xl font-bold mb-3"
+              >
+                Mejor precio
+              </h3>
+              <p id="benefit-3-desc" class="benefit-desc text-lg">
+                Calidad premium sin intermediarios. Ahorra hasta 30% comprando
+                directo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Products Preview -->
+      <section class="products-section py-12 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto text-center">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-16"
+          >
+            Nuestros productos
+          </h2>
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8"
+          >
+            <div
+              class="product-card rounded-2xl p-6 transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-3">🍊</div>
+              <p class="product-name font-semibold text-lg">Naranjas</p>
+            </div>
+            <div
+              class="product-card rounded-2xl p-6 transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-3">🥬</div>
+              <p class="product-name font-semibold text-lg">Lechugas</p>
+            </div>
+            <div
+              class="product-card rounded-2xl p-6 transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-3">🍅</div>
+              <p class="product-name font-semibold text-lg">Tomates</p>
+            </div>
+            <div
+              class="product-card rounded-2xl p-6 transition-transform duration-300 hover:scale-105"
+            >
+              <div class="text-6xl mb-3">🥕</div>
+              <p class="product-name font-semibold text-lg">Zanahorias</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Section -->
+      <section class="about-section py-12 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+          <!-- Quiénes Somos -->
+          <div class="mb-12 sm:mb-20">
+            <h2
+              id="about-title"
+              class="section-title text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-center"
+            >
+              Quiénes somos
+            </h2>
+            <p
+              id="about-description"
+              class="about-text text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-4xl mx-auto px-4"
+            >
+              Somos una empresa dedicada a revolucionar la forma en que las
+              personas acceden a frutas y verduras frescas. Con más de 5 años de
+              experiencia, conectamos directamente a productores locales con
+              familias que valoran la calidad, la frescura y el bienestar.
+              Nuestro compromiso es garantizar que cada producto que llega a tu
+              puerta sea seleccionado con cuidado y entregado con pasión.
+            </p>
+          </div>
+          <!-- Misión, Visión y Valores -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-12 mb-12 sm:mb-20"
+          >
+            <!-- Misión -->
+            <div class="mission-card rounded-2xl p-6 sm:p-8">
+              <div class="text-5xl mb-4">🎯</div>
+              <h3
+                id="mission-title"
+                class="about-subsection text-xl sm:text-2xl font-bold mb-4"
+              >
+                Nuestra Misión
+              </h3>
+              <p
+                id="mission-description"
+                class="about-text text-base sm:text-lg leading-relaxed"
+              >
+                Garantizar el acceso a productos frescos, nutritivos y de alta
+                calidad, entregados directamente a tu hogar en 24 horas.
+                Queremos hacer que una alimentación saludable sea accesible,
+                conveniente y confiable para todas las familias.
+              </p>
+            </div>
+            <!-- Visión -->
+            <div class="vision-card rounded-2xl p-6 sm:p-8">
+              <div class="text-5xl mb-4">🌱</div>
+              <h3
+                id="vision-title"
+                class="about-subsection text-xl sm:text-2xl font-bold mb-4"
+              >
+                Nuestra Visión
+              </h3>
+              <p
+                id="vision-description"
+                class="about-text text-base sm:text-lg leading-relaxed"
+              >
+                Ser el líder indiscutible en la distribución de frutas y
+                verduras frescas a domicilio, reconocido por nuestra excelencia,
+                sostenibilidad y compromiso con la salud de nuestros clientes.
+                Aspiramos a transformar los hábitos de consumo y crear una
+                comunidad de personas conscientes de su bienestar.
+              </p>
+            </div>
+            <!-- Valores -->
+            <div class="values-card rounded-2xl p-6 sm:p-8">
+              <div class="text-5xl mb-4">✨</div>
+              <h3 class="about-subsection text-xl sm:text-2xl font-bold mb-4">
+                Nuestros Valores
+              </h3>
+              <ul class="space-y-3">
+                <li class="text-base sm:text-lg">
+                  <span class="font-bold"
+                    >🍎 <span id="value-1">Frescura</span>:</span
+                  >
+                  Cada producto es garantía de calidad
+                </li>
+                <li class="text-base sm:text-lg">
+                  <span class="font-bold"
+                    >🤝 <span id="value-2">Confianza</span>:</span
+                  >
+                  Transparencia en cada transacción
+                </li>
+                <li class="text-base sm:text-lg">
+                  <span class="font-bold"
+                    >🌍 <span id="value-3">Sostenibilidad</span>:</span
+                  >
+                  Cuidamos el planeta
+                </li>
+                <li class="text-base sm:text-lg">
+                  <span class="font-bold"
+                    >⭐ <span id="value-4">Excelencia</span>:</span
+                  >
+                  Superamos expectativas siempre
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Contact Section -->
+      <section class="contact-section py-12 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2
+            id="contact-title"
+            class="contact-title text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6"
+          >
+            ¿Listo para empezar?
+          </h2>
+          <p
+            id="contact-description"
+            class="contact-description text-base sm:text-lg md:text-xl mb-8 sm:mb-10"
+          >
+            Déjanos tus datos y te contactamos para tu primera entrega
+          </p>
+          <form
+            id="contact-form"
+            class="contact-form rounded-3xl p-6 sm:p-8 max-w-lg mx-auto"
+          >
+            <div class="mb-6">
+              <label
+                for="name"
+                class="form-label block text-left text-base sm:text-lg font-semibold mb-2"
+              >
+                Nombre
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 transition-all text-base"
+                placeholder="Tu nombre completo"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                for="email"
+                class="form-label block text-left text-base sm:text-lg font-semibold mb-2"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 transition-all text-base"
+                placeholder="tu@email.com"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label
+                for="phone"
+                class="form-label block text-left text-base sm:text-lg font-semibold mb-2"
+              >
+                Teléfono
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="form-input w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 transition-all text-base"
+                placeholder="+34 600 000 000"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="submit-button w-full text-lg sm:text-xl py-3 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Solicitar información
+            </button>
+            <div
+              id="success-message"
+              class="success-message mt-6 p-4 rounded-xl hidden"
+            >
+              <p class="font-semibold text-base sm:text-lg">
+                ✅ ¡Gracias! Te contactaremos pronto.
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="footer-section py-8 sm:py-10 px-4 sm:px-6 text-center">
+        <p id="footer-text" class="footer-text text-base sm:text-lg">
+          © 2024 FreshMarket. Frescura garantizada.
+        </p>
+      </footer>
+    </div>
+    <script>
+      const defaultConfig = {
+        background_color: "#f0fdf4",
+        surface_color: "#ffffff",
+        text_color: "#064e3b",
+        primary_action_color: "#10b981",
+        secondary_action_color: "#059669",
+        font_family: "system-ui, -apple-system, sans-serif",
+        font_size: 16,
+        main_title: "Frescura a tu puerta",
+        subtitle:
+          "Frutas y verduras frescas entregadas en tu hogar. Calidad premium directo del campo a tu mesa.",
+        cta_button: "Pedir ahora 🛒",
+        benefit_1_title: "100% Fresco",
+        benefit_1_desc:
+          "Productos frescos directo del campo, seleccionados cuidadosamente cada día.",
+        benefit_2_title: "Entrega rápida",
+        benefit_2_desc:
+          "En tu puerta en 24 horas. Pedidos antes de las 2pm, entrega al día siguiente.",
+        benefit_3_title: "Mejor precio",
+        benefit_3_desc:
+          "Calidad premium sin intermediarios. Ahorra hasta 30% comprando directo.",
+        about_title: "Quiénes somos",
+        about_description:
+          "Somos una empresa dedicada a revolucionar la forma en que las personas acceden a frutas y verduras frescas. Con más de 5 años de experiencia, conectamos directamente a productores locales con familias que valoran la calidad, la frescura y el bienestar.",
+        mission_title: "Nuestra Misión",
+        mission_description:
+          "Garantizar el acceso a productos frescos, nutritivos y de alta calidad, entregados directamente a tu hogar en 24 horas.",
+        vision_title: "Nuestra Visión",
+        vision_description:
+          "Ser el líder indiscutible en la distribución de frutas y verduras frescas a domicilio, reconocido por nuestra excelencia y sostenibilidad.",
+        value_1: "Frescura",
+        value_2: "Confianza",
+        value_3: "Sostenibilidad",
+        value_4: "Excelencia",
+        contact_title: "¿Listo para empezar?",
+        contact_description:
+          "Déjanos tus datos y te contactamos para tu primera entrega",
+        footer_text: "© 2024 FreshMarket. Frescura garantizada.",
+      };
+
+      async function onConfigChange(config) {
+        const wrapper = document.getElementById("app-wrapper");
+        const heroSection = document.querySelector(".hero-section");
+        const benefitsSection = document.querySelector(".benefits-section");
+        const productsSection = document.querySelector(".products-section");
+        const contactSection = document.querySelector(".contact-section");
+        const footerSection = document.querySelector(".footer-section");
+        const benefitCards = document.querySelectorAll(".benefit-card");
+        const productCards = document.querySelectorAll(".product-card");
+        const contactForm = document.querySelector(".contact-form");
+        const ctaButton = document.getElementById("cta-button");
+        const submitButton = document.querySelector(".submit-button");
+        const formInputs = document.querySelectorAll(".form-input");
+
+        const backgroundColor =
+          config.background_color || defaultConfig.background_color;
+        const surfaceColor =
+          config.surface_color || defaultConfig.surface_color;
+        const textColor = config.text_color || defaultConfig.text_color;
+        const primaryColor =
+          config.primary_action_color || defaultConfig.primary_action_color;
+        const secondaryColor =
+          config.secondary_action_color || defaultConfig.secondary_action_color;
+        const fontFamily = config.font_family || defaultConfig.font_family;
+        const baseFontSize = config.font_size || defaultConfig.font_size;
+
+        wrapper.style.backgroundColor = backgroundColor;
+        heroSection.style.backgroundColor = backgroundColor;
+        benefitsSection.style.backgroundColor = surfaceColor;
+        productsSection.style.backgroundColor = backgroundColor;
+        const aboutSection = document.querySelector(".about-section");
+        if (aboutSection) aboutSection.style.backgroundColor = surfaceColor;
+        contactSection.style.backgroundColor = surfaceColor;
+        footerSection.style.backgroundColor = backgroundColor;
+
+        benefitCards.forEach((card) => {
+          card.style.backgroundColor = backgroundColor;
+        });
+
+        productCards.forEach((card) => {
+          card.style.backgroundColor = surfaceColor;
+        });
+
+        const missionCard = document.querySelector(".mission-card");
+        const visionCard = document.querySelector(".vision-card");
+        const valuesCard = document.querySelector(".values-card");
+        if (missionCard) missionCard.style.backgroundColor = backgroundColor;
+        if (visionCard) visionCard.style.backgroundColor = backgroundColor;
+        if (valuesCard) valuesCard.style.backgroundColor = backgroundColor;
+
+        contactForm.style.backgroundColor = backgroundColor;
+
+        ctaButton.style.backgroundColor = primaryColor;
+        ctaButton.style.color = "#ffffff";
+        submitButton.style.backgroundColor = primaryColor;
+        submitButton.style.color = "#ffffff";
+
+        formInputs.forEach((input) => {
+          input.style.borderColor = secondaryColor;
+        });
+
+        const allText = document.querySelectorAll(
+          ".hero-title, .hero-subtitle, .benefit-title, .benefit-desc, .section-title, .product-name, .contact-title, .contact-description, .form-label, .footer-text, .about-text, .about-subsection"
+        );
+        allText.forEach((el) => {
+          el.style.color = textColor;
+          el.style.fontFamily = `${fontFamily}, Arial, sans-serif`;
+        });
+
+        document.getElementById("main-title").style.fontSize = `${
+          baseFontSize * 2
+        }px`;
+        document.getElementById("subtitle").style.fontSize = `${
+          baseFontSize * 1.25
+        }px`;
+        document.getElementById("cta-button").style.fontSize = `${
+          baseFontSize * 1.25
+        }px`;
+
+        document.querySelectorAll(".benefit-title").forEach((el) => {
+          el.style.fontSize = `${baseFontSize * 1.5}px`;
+        });
+
+        document.querySelectorAll(".benefit-desc").forEach((el) => {
+          el.style.fontSize = `${baseFontSize * 1.125}px`;
+        });
+
+        document.querySelector(".section-title").style.fontSize = `${
+          baseFontSize * 2
+        }px`;
+
+        document.querySelectorAll(".product-name").forEach((el) => {
+          el.style.fontSize = `${baseFontSize * 1.125}px`;
+        });
+
+        document.getElementById("contact-title").style.fontSize = `${
+          baseFontSize * 1.875
+        }px`;
+        document.getElementById("contact-description").style.fontSize = `${
+          baseFontSize * 1.25
+        }px`;
+
+        document.querySelectorAll(".form-label").forEach((el) => {
+          el.style.fontSize = `${baseFontSize * 1.125}px`;
+        });
+
+        document.getElementById("footer-text").style.fontSize = `${
+          baseFontSize * 1.125
+        }px`;
+
+        document.getElementById("main-title").textContent =
+          config.main_title || defaultConfig.main_title;
+        document.getElementById("subtitle").textContent =
+          config.subtitle || defaultConfig.subtitle;
+        document.getElementById("cta-button").textContent =
+          config.cta_button || defaultConfig.cta_button;
+        document.getElementById("benefit-1-title").textContent =
+          config.benefit_1_title || defaultConfig.benefit_1_title;
+        document.getElementById("benefit-1-desc").textContent =
+          config.benefit_1_desc || defaultConfig.benefit_1_desc;
+        document.getElementById("benefit-2-title").textContent =
+          config.benefit_2_title || defaultConfig.benefit_2_title;
+        document.getElementById("benefit-2-desc").textContent =
+          config.benefit_2_desc || defaultConfig.benefit_2_desc;
+        document.getElementById("benefit-3-title").textContent =
+          config.benefit_3_title || defaultConfig.benefit_3_title;
+        document.getElementById("benefit-3-desc").textContent =
+          config.benefit_3_desc || defaultConfig.benefit_3_desc;
+        document.getElementById("about-title").textContent =
+          config.about_title || defaultConfig.about_title;
+        document.getElementById("about-description").textContent =
+          config.about_description || defaultConfig.about_description;
+        document.getElementById("mission-title").textContent =
+          config.mission_title || defaultConfig.mission_title;
+        document.getElementById("mission-description").textContent =
+          config.mission_description || defaultConfig.mission_description;
+        document.getElementById("vision-title").textContent =
+          config.vision_title || defaultConfig.vision_title;
+        document.getElementById("vision-description").textContent =
+          config.vision_description || defaultConfig.vision_description;
+        document.getElementById("value-1").textContent =
+          config.value_1 || defaultConfig.value_1;
+        document.getElementById("value-2").textContent =
+          config.value_2 || defaultConfig.value_2;
+        document.getElementById("value-3").textContent =
+          config.value_3 || defaultConfig.value_3;
+        document.getElementById("value-4").textContent =
+          config.value_4 || defaultConfig.value_4;
+        document.getElementById("contact-title").textContent =
+          config.contact_title || defaultConfig.contact_title;
+        document.getElementById("contact-description").textContent =
+          config.contact_description || defaultConfig.contact_description;
+        document.getElementById("footer-text").textContent =
+          config.footer_text || defaultConfig.footer_text;
+      }
+
+      function mapToCapabilities(config) {
+        return {
+          recolorables: [
+            {
+              get: () =>
+                config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              },
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              },
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              },
+            },
+            {
+              get: () =>
+                config.primary_action_color ||
+                defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              },
+            },
+            {
+              get: () =>
+                config.secondary_action_color ||
+                defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              },
+            },
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            },
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            },
+          },
+        };
+      }
+
+      function mapToEditPanelValues(config) {
+        return new Map([
+          ["main_title", config.main_title || defaultConfig.main_title],
+          ["subtitle", config.subtitle || defaultConfig.subtitle],
+          ["cta_button", config.cta_button || defaultConfig.cta_button],
+          [
+            "benefit_1_title",
+            config.benefit_1_title || defaultConfig.benefit_1_title,
+          ],
+          [
+            "benefit_1_desc",
+            config.benefit_1_desc || defaultConfig.benefit_1_desc,
+          ],
+          [
+            "benefit_2_title",
+            config.benefit_2_title || defaultConfig.benefit_2_title,
+          ],
+          [
+            "benefit_2_desc",
+            config.benefit_2_desc || defaultConfig.benefit_2_desc,
+          ],
+          [
+            "benefit_3_title",
+            config.benefit_3_title || defaultConfig.benefit_3_title,
+          ],
+          [
+            "benefit_3_desc",
+            config.benefit_3_desc || defaultConfig.benefit_3_desc,
+          ],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          [
+            "about_description",
+            config.about_description || defaultConfig.about_description,
+          ],
+          [
+            "mission_title",
+            config.mission_title || defaultConfig.mission_title,
+          ],
+          [
+            "mission_description",
+            config.mission_description || defaultConfig.mission_description,
+          ],
+          ["vision_title", config.vision_title || defaultConfig.vision_title],
+          [
+            "vision_description",
+            config.vision_description || defaultConfig.vision_description,
+          ],
+          ["value_1", config.value_1 || defaultConfig.value_1],
+          ["value_2", config.value_2 || defaultConfig.value_2],
+          ["value_3", config.value_3 || defaultConfig.value_3],
+          ["value_4", config.value_4 || defaultConfig.value_4],
+          [
+            "contact_title",
+            config.contact_title || defaultConfig.contact_title,
+          ],
+          [
+            "contact_description",
+            config.contact_description || defaultConfig.contact_description,
+          ],
+          ["footer_text", config.footer_text || defaultConfig.footer_text],
+        ]);
+      }
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues,
+        });
+      }
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("hidden");
+      });
+
+      // Close menu when clicking a link
+      const navLinks = navMenu.querySelectorAll("a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.add("hidden");
+        });
+      });
+
+      const form = document.getElementById("contact-form");
+      const successMessage = document.getElementById("success-message");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        successMessage.classList.remove("hidden");
+
+        form.reset();
+
+        setTimeout(() => {
+          successMessage.classList.add("hidden");
+        }, 5000);
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9fee746386bed08d',t:'MTc3OTMxMjc1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
