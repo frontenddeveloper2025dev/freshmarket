@@ -107,39 +107,32 @@
       </nav>
       <!-- Hero Section -->
 <header
-  class="hero-section w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 pt-24 sm:pt-32 relative overflow-hidden"
-  style="
-    background: linear-gradient(
-        135deg,
-        rgba(16, 185, 129, 0.55) 0%,
-        rgba(5, 150, 105, 0.55) 100%
-      ),
-      url('https://raw.githubusercontent.com/frontenddeveloper2025dev/freshmarket/refs/heads/main/foto%20verduras%202.jpg')
-        center/cover no-repeat;
-    background-attachment: fixed;
-  "
+  class="hero-section w-full min-h-[78vh] sm:min-h-screen flex items-center justify-center px-4 sm:px-6 py-14 sm:py-20 pt-32 sm:pt-36 relative overflow-hidden bg-green-700"
 >
-  <!-- Decorative circles -->
+  <!-- Imagen de fondo -->
+  <img
+    src="https://raw.githubusercontent.com/frontenddeveloper2025dev/freshmarket/refs/heads/main/foto%20verduras%202.jpg"
+    alt="Mercado de frutas y verduras"
+    class="absolute inset-0 w-full h-full object-cover object-center z-0"
+  />
+
+  <!-- Overlay verde -->
   <div
-    class="absolute top-8 right-4 sm:top-10 sm:right-10 w-24 sm:w-40 h-24 sm:h-40 bg-white opacity-10 rounded-full blur-3xl z-[2]"
+    class="absolute inset-0 bg-gradient-to-br from-emerald-500/55 to-emerald-700/55 z-[1]"
   ></div>
 
-  <div
-    class="absolute bottom-16 sm:bottom-20 left-2 sm:left-5 w-32 sm:w-64 h-32 sm:h-64 bg-white opacity-5 rounded-full blur-3xl z-[2]"
-  ></div>
-
-  <div class="w-full max-w-6xl mx-auto text-center relative z-10">
+  <!-- Contenido -->
+  <div class="w-full max-w-6xl mx-auto text-center relative z-10 px-2">
     <h1
       id="main-title"
-      class="hero-title text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-white"
+      class="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg leading-tight"
     >
       Frescura a tu puerta
     </h1>
 
     <p
       id="subtitle"
-      class="hero-subtitle text-base sm:text-lg md:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto px-2 leading-relaxed"
-      style="color: #ffffff !important"
+      class="hero-subtitle text-base sm:text-lg md:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed text-white drop-shadow-md"
     >
       Frutas y verduras frescas entregadas en tu hogar. Calidad premium
       directo del campo a tu mesa.
@@ -147,7 +140,7 @@
 
     <button
       id="cta-button"
-      class="cta-button text-base sm:text-lg px-6 sm:px-10 py-2 sm:py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl bg-white text-green-700 hover:bg-gray-100"
+      class="cta-button text-base sm:text-lg px-7 sm:px-10 py-3 sm:py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl bg-white text-green-700 hover:bg-gray-100"
     >
       Pedir ahora
     </button>
